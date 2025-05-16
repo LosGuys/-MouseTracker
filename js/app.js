@@ -14,11 +14,11 @@ class ParticleSystem {
         this.lastX = 0;
         this.lastY = 0;
         
-        // Initialize effect settings
+        // Initialize effect settings with enhanced trails
         this.useTrail = false;
-        this.trailLength = 5;
+        this.trailLength = 15;  // Increased from 5
         this.particleLifetime = 0.01;
-        this.glowIntensity = 0.5;
+        this.glowIntensity = 0.7;  // Increased from 0.5
         
         this.effects = {
             embers: new EmberEffect(),
@@ -66,14 +66,18 @@ class ParticleSystem {
             colorInput.value = hex;
         });
 
+        this.setupParticleControls();
+    }
+
+    setupParticleControls() {
         // Trail effect toggle
         document.getElementById('trailEffect').addEventListener('change', (e) => {
             this.useTrail = e.target.checked;
         });
 
-        // Trail length control
+        // Trail length control with enhanced length
         document.getElementById('trailLength').addEventListener('input', (e) => {
-            this.trailLength = parseInt(e.target.value);
+            this.trailLength = parseInt(e.target.value) * 3; // Tripled the trail length multiplier
         });
 
         // Particle lifetime control
