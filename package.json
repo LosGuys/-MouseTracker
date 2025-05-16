@@ -1,0 +1,12 @@
+{
+  "name": "mouse-tracker",
+  "version": "1.0.0",
+  "description": "Interactive mouse visualization effects",
+  "main": "server.js",
+  "scripts": {
+    "start": "npx http-server -o"
+  },
+  "dependencies": {
+    "http-server": "^14.1.1"
+  }
+}
