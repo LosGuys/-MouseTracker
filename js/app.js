@@ -14,6 +14,12 @@ class ParticleSystem {
         this.lastX = 0;
         this.lastY = 0;
         
+        // Initialize effect settings
+        this.useTrail = false;
+        this.trailLength = 5;
+        this.particleLifetime = 0.01;
+        this.glowIntensity = 0.5;
+        
         this.effects = {
             embers: new EmberEffect(),
             bloom: new BloomEffect(),
@@ -29,11 +35,45 @@ class ParticleSystem {
         this.resize();
         this.setupEventListeners();
         this.animate();
-    }
-
-    setupControls() {
+    }    setupControls() {
         document.getElementById('effectType').addEventListener('change', (e) => {
             this.currentEffect = this.effects[e.target.value];
+        });
+
+        // Trail effect toggle
+        document.getElementById('trailEffect').addEventListener('change', (e) => {
+            this.useTrail = e.target.checked;
+        });
+
+        // Trail length control
+        document.getElementById('trailLength').addEventListener('input', (e) => {
+            this.trailLength = parseInt(e.target.value);
+        });
+
+        // Particle lifetime control
+        document.getElementById('particleLife').addEventListener('input', (e) => {
+            this.particleLifetime = 1 / parseInt(e.target.value);
+        });
+
+        // Glow intensity control
+        document.getElementById('glowIntensity').addEventListener('input', (e) => {
+            this.glowIntensity = parseInt(e.target.value) / 10;
+        });
+    }
+
+    createParticlesWithEffects(x, y) {
+        const color = document.getElementById('particleColor').value;
+        const size = parseInt(document.getElementById('particleSize').value);
+        const speed = parseInt(document.getElementById('particleSpeed').value);
+        
+        this.currentEffect.createParticles(x, y, color, size, speed);
+        
+        // Apply effect settings to new particles
+        this.currentEffect.particles.forEach(particle => {
+            particle.useTrail = this.useTrail;
+            particle.maxTrailLength = this.trailLength;
+            particle.lifeDecay = this.particleLifetime;
+            particle.glowIntensity = this.glowIntensity;
         });
     }
 

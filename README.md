@@ -16,6 +16,10 @@ An interactive particle visualization system that creates beautiful effects as y
   - Color selection
   - Particle size
   - Animation speed
+  - Particle lifetime
+  - Trail effects (toggle on/off)
+  - Trail length
+  - Glow intensity
 
 ## How to Run
 
