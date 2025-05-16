@@ -36,8 +36,34 @@ class ParticleSystem {
         this.setupEventListeners();
         this.animate();
     }    setupControls() {
-        document.getElementById('effectType').addEventListener('change', (e) => {
-            this.currentEffect = this.effects[e.target.value];
+        // Setup radio button event listeners
+        document.querySelectorAll('input[name="effectType"]').forEach(radio => {
+            radio.addEventListener('change', (e) => {
+                if (e.target.checked) {
+                    this.currentEffect = this.effects[e.target.value];
+                }
+            });
+        });
+
+        // Setup color wheel
+        const colorWheel = document.getElementById('colorWheel');
+        const colorInput = document.getElementById('particleColor');
+        
+        colorWheel.addEventListener('click', (e) => {
+            const rect = colorWheel.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+            
+            // Convert position to hue and saturation
+            const angle = Math.atan2(y, x);
+            const hue = ((angle + Math.PI) / (2 * Math.PI)) * 360;
+            const distance = Math.min(Math.sqrt(x * x + y * y) / (rect.width / 2), 1);
+            
+            // Convert HSV to RGB (assuming V=1)
+            const rgb = this.HSVtoRGB(hue, distance, 1);
+            const hex = '#' + (1 << 24 | rgb.r << 16 | rgb.g << 8 | rgb.b).toString(16).slice(1);
+            
+            colorInput.value = hex;
         });
 
         // Trail effect toggle
@@ -112,6 +138,30 @@ class ParticleSystem {
 
         this.currentEffect.update(this.ctx);
         requestAnimationFrame(() => this.animate());
+    }
+
+    HSVtoRGB(h, s, v) {
+        let r, g, b;
+        const i = Math.floor(h * 6);
+        const f = h * 6 - i;
+        const p = v * (1 - s);
+        const q = v * (1 - f * s);
+        const t = v * (1 - (1 - f) * s);
+        
+        switch (i % 6) {
+            case 0: r = v; g = t; b = p; break;
+            case 1: r = q; g = v; b = p; break;
+            case 2: r = p; g = v; b = t; break;
+            case 3: r = p; g = q; b = v; break;
+            case 4: r = t; g = p; b = v; break;
+            case 5: r = v; g = p; b = q; break;
+        }
+        
+        return {
+            r: Math.round(r * 255),
+            g: Math.round(g * 255),
+            b: Math.round(b * 255)
+        };
     }
 }
 

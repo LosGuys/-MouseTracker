@@ -6,21 +6,45 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <div class="controls">
-        <div class="control-group">
-            <label for="effectType">Effect Type:</label>            <select id="effectType">
-                <option value="embers">Embers</option>
-                <option value="bloom">Color Bloom</option>
-                <option value="flame">Flames</option>
-                <option value="galaxy">Galaxy</option>
-                <option value="sparkle">Sparkles</option>
-                <option value="matrix">Matrix Rain</option>
-                <option value="ripple">Ripples</option>
-            </select>
+    <div class="controls">        <div class="control-group effect-group">
+            <label class="group-label">Effect Type:</label>
+            <div class="radio-group">
+                <div class="radio-option">
+                    <input type="radio" id="effect-embers" name="effectType" value="embers" checked>
+                    <label for="effect-embers">Embers</label>
+                </div>
+                <div class="radio-option">
+                    <input type="radio" id="effect-bloom" name="effectType" value="bloom">
+                    <label for="effect-bloom">Color Bloom</label>
+                </div>
+                <div class="radio-option">
+                    <input type="radio" id="effect-flame" name="effectType" value="flame">
+                    <label for="effect-flame">Flames</label>
+                </div>
+                <div class="radio-option">
+                    <input type="radio" id="effect-galaxy" name="effectType" value="galaxy">
+                    <label for="effect-galaxy">Galaxy</label>
+                </div>
+                <div class="radio-option">
+                    <input type="radio" id="effect-sparkle" name="effectType" value="sparkle">
+                    <label for="effect-sparkle">Sparkles</label>
+                </div>
+                <div class="radio-option">
+                    <input type="radio" id="effect-matrix" name="effectType" value="matrix">
+                    <label for="effect-matrix">Matrix Rain</label>
+                </div>
+                <div class="radio-option">
+                    <input type="radio" id="effect-ripple" name="effectType" value="ripple">
+                    <label for="effect-ripple">Ripples</label>
+                </div>
+            </div>
         </div>
         <div class="control-group">
             <label for="particleColor">Color:</label>
-            <input type="color" id="particleColor" value="#ff4400">
+            <div class="color-picker">
+                <div class="color-wheel" id="colorWheel"></div>
+                <input type="color" id="particleColor" value="#ff4400">
+            </div>
         </div>
         <div class="control-group">
             <label for="particleSize">Size:</label>
