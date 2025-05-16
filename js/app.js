@@ -1,6 +1,10 @@
 import { EmberEffect } from './effects/emberEffect.js';
 import { BloomEffect } from './effects/bloomEffect.js';
 import { FlameEffect } from './effects/flameEffect.js';
+import { GalaxyEffect } from './effects/galaxyEffect.js';
+import { SparkleEffect } from './effects/sparkleEffect.js';
+import { MatrixEffect } from './effects/matrixEffect.js';
+import { RippleEffect } from './effects/rippleEffect.js';
 
 class ParticleSystem {
     constructor() {
@@ -13,7 +17,11 @@ class ParticleSystem {
         this.effects = {
             embers: new EmberEffect(),
             bloom: new BloomEffect(),
-            flame: new FlameEffect()
+            flame: new FlameEffect(),
+            galaxy: new GalaxyEffect(),
+            sparkle: new SparkleEffect(),
+            matrix: new MatrixEffect(),
+            ripple: new RippleEffect()
         };
         
         this.currentEffect = this.effects.embers;

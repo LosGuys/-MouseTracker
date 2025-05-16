@@ -4,10 +4,14 @@ An interactive particle visualization system that creates beautiful effects as y
 
 ## Features of file
 
-- Three distinct effects:
+- Seven distinct effects:
   - Embers: Spark-like particles that drift upward
   - Color Bloom: Flower-like pattern with color variations
   - Flames: Dynamic fire effect
+  - Galaxy: Spiraling particles creating a cosmic vortex
+  - Sparkles: Twinkling star-like particles with glow effects
+  - Matrix: Digital rain with Japanese characters
+  - Ripples: Expanding circular waves with fade effects
 - Customizable parameters:
   - Color selection
   - Particle size
